@@ -1,35 +1,20 @@
-/**
- * api.js
- * ------
- * Central API layer for Devub Technologies website.
- *
- * HOW IT WORKS:
- * - When VITE_USE_MOCK=true  → returns local mock data (no server needed)
- * - When VITE_USE_MOCK=false → fetches real data from your backend server
- *
- * HOW TO SWITCH TO REAL BACKEND:
- * 1. Open .env file in the root directory
- * 2. Change:  VITE_USE_MOCK=true  →  VITE_USE_MOCK=false
- * 3. Set:    VITE_API_BASE_URL=http://your-server.com/api
- * 4. Restart the dev server: npm run dev
- *
- * No changes needed in any component file!
- */
-
 import {
+  partnerLogos,
+  servicesData,
   portfolioProjects,
+  darkBannerStats,
   caseStudies,
-  faqItems,
   processItems,
-  heroStats,
+  testimonials,
+  engagementModels,
+  faqItems,
 } from "../data/mockData";
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK !== "false";
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
-// ─── Generic fetch helper ─────────────────────────────────────────────────────
 async function request(endpoint, options = {}) {
-  const token = localStorage.getItem("token"); // JWT from login
+  const token = localStorage.getItem("token");
   const res = await fetch(`${API_BASE}${endpoint}`, {
     headers: {
       "Content-Type": "application/json",
@@ -41,91 +26,66 @@ async function request(endpoint, options = {}) {
   return res.json();
 }
 
-// ─── Simulate network delay for mock data ────────────────────────────────────
-const delay = (ms = 300) => new Promise((r) => setTimeout(r, ms));
+const delay = (ms = 250) => new Promise((r) => setTimeout(r, ms));
 
-// ─── API Functions ────────────────────────────────────────────────────────────
+export async function getPartners() {
+  if (USE_MOCK) { await delay(); return partnerLogos; }
+  return request("/partners");
+}
 
-/**
- * GET /api/portfolio
- * Returns all portfolio projects.
- * Optional query: ?category=Design|Development|Others
- */
+export async function getServices() {
+  if (USE_MOCK) { await delay(); return servicesData; }
+  return request("/services");
+}
+
 export async function getPortfolio(category = null) {
   if (USE_MOCK) {
     await delay();
-    return category
+    return category && category !== "All"
       ? portfolioProjects.filter((p) => p.category === category)
       : portfolioProjects;
   }
-  const query = category ? `?category=${category}` : "";
-  return request(`/portfolio${query}`);
+  const q = category ? `?category=${category}` : "";
+  return request(`/portfolio${q}`);
 }
 
-/**
- * GET /api/case-studies
- * Returns all case study entries.
- */
+export async function getDarkStats() {
+  if (USE_MOCK) { await delay(); return darkBannerStats; }
+  return request("/stats");
+}
+
 export async function getCaseStudies() {
-  if (USE_MOCK) {
-    await delay();
-    return caseStudies;
-  }
+  if (USE_MOCK) { await delay(); return caseStudies; }
   return request("/case-studies");
 }
 
-/**
- * GET /api/faq
- * Returns all FAQ items.
- */
-export async function getFaq() {
-  if (USE_MOCK) {
-    await delay();
-    return faqItems;
-  }
-  return request("/faq");
-}
-
-/**
- * GET /api/process
- * Returns creative process bento grid items.
- */
 export async function getProcess() {
-  if (USE_MOCK) {
-    await delay();
-    return processItems;
-  }
+  if (USE_MOCK) { await delay(); return processItems; }
   return request("/process");
 }
 
-/**
- * GET /api/hero-stats
- * Returns hero section stat numbers.
- */
-export async function getHeroStats() {
-  if (USE_MOCK) {
-    await delay();
-    return heroStats;
-  }
-  return request("/hero-stats");
+export async function getTestimonials() {
+  if (USE_MOCK) { await delay(); return testimonials; }
+  return request("/testimonials");
 }
 
-/**
- * POST /api/contact
- * Submits the contact form.
- *
- * Body: { name, email, company, message }
- * Response: { success: true, message: "We'll be in touch!" }
- */
+export async function getEngagementModels() {
+  if (USE_MOCK) { await delay(); return engagementModels; }
+  return request("/engagement-models");
+}
+
+export async function getFaq() {
+  if (USE_MOCK) { await delay(); return faqItems; }
+  return request("/faq");
+}
+
 export async function submitContact(formData) {
   if (USE_MOCK) {
-    await delay(600);
-    console.log("Mock contact form submission:", formData);
-    return { success: true, message: "We'll be in touch!" };
+    await delay(500);
+    return { success: true, message: "We'll be in touch within 24 hours!" };
   }
   return request("/contact", {
     method: "POST",
     body: JSON.stringify(formData),
   });
 }
-

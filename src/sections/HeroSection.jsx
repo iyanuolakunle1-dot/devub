@@ -1,70 +1,68 @@
-/**
- * HeroSection.jsx
- * ---------------
- * Landing hero with headline, subtext, two CTAs, and stat badges.
- *
- * Data: heroStats are fetched from api.js (or mockData.js when mock is on).
- */
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
-import { getHeroStats } from "../services/api";
+import { getPartners } from "../services/api";
 
 const HeroSection = () => {
-  const [stats, setStats] = useState([]);
+  const [partners, setPartners] = useState([]);
 
   useEffect(() => {
-    getHeroStats().then(setStats).catch(console.error);
+    getPartners().then(setPartners).catch(console.error);
   }, []);
 
   return (
-    <section className="bg-white pt-20 pb-24 px-5 md:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F5FF]/60 via-white to-white pt-20 pb-16 px-5 md:px-8">
+      {/* Decorative blurred background orb */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
+
       <div className="max-w-4xl mx-auto text-center">
-        {/* Eyebrow pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-brand text-xs font-semibold tracking-wide mb-6">
-          <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-          Trusted by 120+ technical teams
+        {/* Blue badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#2563EB] text-[11px] font-bold tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-pulse" />
+          Software Engineering Studio
         </div>
 
-        {/* Headline */}
-        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
-          We build software that{" "}
-          <span className="text-brand">scales with you.</span>
+        {/* Heading */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0F172A] leading-[1.12] tracking-tight mb-6">
+          Engineering the software <br className="hidden sm:inline" />
+          solutions of <span className="text-[#2563EB]">tomorrow</span>
         </h1>
 
-        {/* Sub-headline */}
-        <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Devub Technologies designs and delivers custom web applications, cloud
-          infrastructure, and system audits for ambitious product teams.
+        {/* Subhead */}
+        <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-9 leading-relaxed font-normal">
+          We architect resilient, high-speed applications and managed cloud environments
+          that empower growth-focused teams to scale with clarity.
         </p>
 
-        {/* CTA row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
-          <Button variant="primary" className="px-7 py-3 text-base">
-            Start a Project
-            <svg viewBox="0 0 20 20" className="w-4 h-4 fill-current">
+        {/* CTA buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-16">
+          <Button variant="primary" className="px-6 py-3 text-sm bg-[#2563EB] hover:bg-[#1D4ED8] shadow-md shadow-blue-500/20">
+            Build with Devub
+            <svg viewBox="0 0 20 20" className="w-4 h-4 fill-current ml-1">
               <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
             </svg>
           </Button>
-          <Button variant="outline" className="px-7 py-3 text-base">
-            View Our Work
+          <Button variant="outline" className="px-6 py-3 text-sm border-gray-200 text-gray-700 hover:border-[#2563EB] hover:text-[#2563EB]">
+            Explore Services
           </Button>
         </div>
 
-        {/* Stats */}
-        {stats.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-10">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="text-3xl font-extrabold text-gray-900">{s.value}</p>
-                <p className="text-sm text-gray-500 mt-1">{s.label}</p>
-              </div>
+        {/* Partner Logos Strip */}
+        <div className="pt-8 border-t border-gray-100">
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-6">
+            Empowering modern engineering stacks across
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-gray-400 text-sm font-bold tracking-tight">
+            {partners.map((p) => (
+              <span key={p.name} className="flex items-center gap-1.5 hover:text-gray-600 transition-colors">
+                <span className="w-2 h-2 rounded-full bg-gray-300" />
+                {p.name}
+              </span>
             ))}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
 };
 
 export default HeroSection;
-

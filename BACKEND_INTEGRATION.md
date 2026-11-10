@@ -168,3 +168,4 @@ src/
 
 ## 5. CORS
 Make sure your backend server allows requests from `http://localhost:5173` (Vite's default port) during development.
+

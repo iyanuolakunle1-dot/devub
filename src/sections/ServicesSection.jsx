@@ -1,73 +1,74 @@
-/**
- * ServicesSection.jsx
- * -------------------
- * Three service cards: Custom Apps, System Audit, Cloud DevOps.
- *
- * To add backend: fetch service list from GET /api/services
- * and pass the array to this component.
- */
+import { useEffect, useState } from "react";
 import SectionLabel from "../components/SectionLabel";
+import { getServices } from "../services/api";
 
-const SERVICES = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6 text-brand" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
-      </svg>
-    ),
-    title: "Custom Apps",
-    description:
-      "Full-stack web and mobile applications built on modern frameworks — React, Next.js, Node.js — delivered fast, tested thoroughly.",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6 text-brand" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
-      </svg>
-    ),
-    title: "System Audit",
-    description:
-      "Deep-dive architecture reviews that identify performance bottlenecks, security gaps, and scalability roadblocks before they hit production.",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6 text-brand" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: "Cloud DevOps",
-    description:
-      "CI/CD pipelines, container orchestration, and cloud cost optimisation on AWS, GCP, or Azure — keeping your infrastructure lean and fast.",
-  },
-];
+const ServicesSection = () => {
+  const [services, setServices] = useState([]);
 
-const ServicesSection = () => (
-  <section id="services" className="bg-gray-50 py-24 px-5 md:px-8">
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-14">
-        <SectionLabel text="What We Do" />
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-          Built for teams that need more than a dev shop.
-        </h2>
-      </div>
+  useEffect(() => {
+    getServices().then(setServices).catch(console.error);
+  }, []);
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {SERVICES.map((s) => (
-          <div
-            key={s.title}
-            className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-md transition-shadow"
-          >
-            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-              {s.icon}
+  return (
+    <section id="services" className="bg-[#F8FAFC] py-24 px-5 md:px-8 border-t border-gray-100">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <SectionLabel text="Core Capabilities" />
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
+            We build tech infrastructure engineered to succeed
+          </h2>
+          <p className="text-sm text-gray-500 mt-3">
+            Modular software architectures and managed engineering teams designed to accelerate release cycles.
+          </p>
+        </div>
+
+        {/* 2x2 Grid of Services */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl p-8 border border-gray-100 hover:border-blue-200 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
+            >
+              <div>
+                {/* Header row: badge + tag */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center font-bold text-sm">
+                    {item.badge}
+                  </div>
+                  <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                    {item.tag}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-[#0F172A] mb-3 group-hover:text-[#2563EB] transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Action link */}
+              <div className="pt-6 mt-6 border-t border-gray-50">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2563EB] group-hover:gap-2.5 transition-all"
+                >
+                  Learn how we build this
+                  <svg viewBox="0 0 20 20" className="w-3.5 h-3.5 fill-current">
+                    <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
+                  </svg>
+                </a>
+              </div>
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">{s.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
+
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default ServicesSection;
-
