@@ -15,7 +15,7 @@ const ServicesSection = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <SectionLabel text="Core Capabilities" />
+          <SectionLabel text="SERVICES" />
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
             We build tech infrastructure engineered to succeed
           </h2>
@@ -32,9 +32,9 @@ const ServicesSection = () => {
               className="bg-white rounded-2xl p-8 border border-gray-100 hover:border-blue-200 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
             >
               <div>
-                {/* Header row: badge + tag */}
+                {/* Header row: solid blue badge + tag */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center font-bold text-sm">
+                  <div className="w-9 h-9 rounded-lg bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs shadow-sm">
                     {item.badge}
                   </div>
                   <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">

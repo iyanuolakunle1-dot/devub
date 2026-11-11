@@ -1,33 +1,29 @@
 import { useState } from "react";
 import Button from "./Button";
-
-const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "FAQ", href: "#faq" },
-];
+import devubIcon from "../assets/images/devub_icon.png";
+import { NAV_LINKS, BUTTON_LABELS } from "../constants/text";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-      <nav className="max-w-7xl mx-auto px-5 md:px-8 h-18 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
         
-        {/* Brand Logo with blue icon */}
-        <a href="#" className="flex items-center gap-2.5 font-extrabold text-lg text-[#0F172A] tracking-tight">
-          <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center shadow-sm">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm5 8h-2v-4h2v4zm0-6h-2V7h2v4z"/>
-            </svg>
-          </div>
-          <span>Devub Technologies</span>
+        {/* Exact Brand Logo matching design */}
+        <a href="#" className="flex items-center gap-2.5 group">
+          <img
+            src={devubIcon}
+            alt="Devub"
+            className="w-7 h-7 object-contain"
+          />
+          <span className="font-extrabold text-[19px] text-[#0F172A] tracking-tight group-hover:text-[#2563EB] transition-colors">
+            Devub Technologies
+          </span>
         </a>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8 text-[13px] font-medium text-gray-600">
+        {/* Desktop Nav Links */}
+        <ul className="hidden md:flex items-center gap-9 text-[13px] font-medium text-gray-600">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <a href={link.href} className="hover:text-[#2563EB] transition-colors">
@@ -37,10 +33,23 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button variant="primary" className="text-xs px-5 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8]">
-            Talk to an Expert
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-5">
+          <button
+            onClick={() => console.log('Sign In clicked')}
+            className="text-sm font-semibold text-gray-700 hover:text-[#2563EB] transition-colors cursor-pointer"
+          >
+            {BUTTON_LABELS.signIn}
+          </button>
+          <Button
+            variant="primary"
+            className="text-xs px-5 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] rounded-full font-semibold shadow-sm text-white"
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            {BUTTON_LABELS.getStarted}
           </Button>
         </div>
 
@@ -71,8 +80,16 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="primary" className="mt-2 w-full justify-center bg-[#2563EB]">
-            Talk to an Expert
+          <Button
+            variant="primary"
+            className="mt-2 w-full justify-center bg-[#2563EB]"
+            onClick={() => {
+              setMenuOpen(false);
+              const el = document.getElementById("contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            {BUTTON_LABELS.talkToExpert}
           </Button>
         </div>
       )}

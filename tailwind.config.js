@@ -13,9 +13,12 @@ export default {
         "dark-card": "#1A1A1A",   // footer card
         muted: "#6B7280",         // grey text
         section: "#EEF2FF",       // light lavender background
+        "section-bg": "#EEF2FF",
+        "dark-banner": "#090D16",
+        accent: "#0F172A",
+        "gray-light": "#F8FAFC",
       },
     },
   },
   plugins: [],
 };
-

@@ -1,0 +1,10 @@
+/* src/styles/typography.css */
+@layer utilities {
+  /* Headings */
+  .heading-1 { @apply text-4xl sm:text-5xl md:text-6xl font-extrabold text-accent; }
+  .heading-2 { @apply text-3xl sm:text-4xl font-extrabold text-accent; }
+  .subhead   { @apply text-base sm:text-lg text-gray-500; }
+  .btn-sm    { @apply text-xs font-semibold; }
+  .nav-link  { @apply text-[13px] font-medium text-gray-600 hover:text-brand; }
+}
+
