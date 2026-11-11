@@ -1,17 +1,34 @@
 /**
  * mockData.js
  * -----------
- * All mock data for the Devub landing page based on the full design.
- * When the backend is ready, toggle VITE_USE_MOCK=false in .env.
+ * Mock data using the exact image assets cropped from your original design screenshots.
  */
+
+// Import exact cropped images
+import portApex from "../assets/images/port_apex.png";
+import portNova from "../assets/images/port_nova.png";
+import portStellar from "../assets/images/port_stellar.png";
+import portVertex from "../assets/images/port_vertex.png";
+import portBrand from "../assets/images/port_brand.png";
+import portAi from "../assets/images/port_ai.png";
+
+import csFlowstate from "../assets/images/cs_flowstate.png";
+import csNova from "../assets/images/cs_nova.png";
+import csStellar from "../assets/images/cs_stellar.png";
+
+import procWorkshop from "../assets/images/proc_workshop.png";
+import procMonitor from "../assets/images/proc_monitor.png";
+import procSticky from "../assets/images/proc_sticky.png";
+import procLaptop from "../assets/images/proc_laptop.png";
+import procTeam from "../assets/images/proc_team.png";
 
 // 1. Partner / Tech Logos under Hero
 export const partnerLogos = [
-  { name: "AppMaster", icon: "appmaster" },
-  { name: "Segment", icon: "segment" },
-  { name: "Webflow", icon: "webflow" },
-  { name: "Intercom", icon: "intercom" },
-  { name: "Retool", icon: "retool" },
+  { name: "AppMaster" },
+  { name: "Segment" },
+  { name: "Webflow" },
+  { name: "Intercom" },
+  { name: "Retool" },
 ];
 
 // 2. Services (4 cards in 2x2 grid)
@@ -46,14 +63,14 @@ export const servicesData = [
   }
 ];
 
-// 3. Portfolio Projects
+// 3. Portfolio Projects (Exact 6 projects from your design)
 export const portfolioProjects = [
   {
     id: 1,
     category: "Design",
     title: "Apex Labs Dashboard",
     description: "A high-fidelity design system for a scaling fintech platform, featuring modular components and a consistent visual language.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    image: portApex,
     tags: ["UI/UX", "Dashboard", "Fintech"]
   },
   {
@@ -61,7 +78,7 @@ export const portfolioProjects = [
     category: "Design",
     title: "Nova Health Companion",
     description: "Mobile onboarding flows and core screens designed for clarity, accessibility, and a premium user experience.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+    image: portNova,
     tags: ["Mobile", "HealthTech", "Figma"]
   },
   {
@@ -69,7 +86,7 @@ export const portfolioProjects = [
     category: "Development",
     title: "Stellar Logistics Portal",
     description: "A high-performance web application built with Next.js and serverless APIs, optimized for fast routing and real-time updates.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    image: portStellar,
     tags: ["Full Stack", "Supply Chain", "Next.js"]
   },
   {
@@ -77,7 +94,7 @@ export const portfolioProjects = [
     category: "Development",
     title: "Vertex Mobile Client",
     description: "Native mobile application development with a focus on performance, offline support, and seamless authentication flows.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+    image: portVertex,
     tags: ["React Native", "Offline-first", "Auth"]
   },
   {
@@ -85,7 +102,7 @@ export const portfolioProjects = [
     category: "Others",
     title: "Brand Identity Kit",
     description: "A comprehensive brand system including typography, iconography, and visual guidelines for product marketing teams.",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
+    image: portBrand,
     tags: ["Branding", "Design System", "Styleguide"]
   },
   {
@@ -93,7 +110,7 @@ export const portfolioProjects = [
     category: "Others",
     title: "AI Pipeline Prototype",
     description: "An internal prototype exploring how LLM integrations can be surfaced in a lightweight, developer-friendly interface.",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
+    image: portAi,
     tags: ["Generative AI", "Python", "FastAPI"]
   }
 ];
@@ -106,32 +123,32 @@ export const darkBannerStats = [
   { value: "24/7", label: "DevOps SLA Monitoring" },
 ];
 
-// 5. Case Studies
+// 5. Case Studies (Exact 3 items from your design)
 export const caseStudies = [
   {
     id: 1,
     tag: "Cloud / Automation",
     title: "FlowState Financial",
     description: "Discover how Devub Technologies designed a highly available cluster that reduced load-testing overhead by 42%.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
+    image: csFlowstate,
   },
   {
     id: 2,
     tag: "AI / Mobile Dev",
     title: "Nova Health Companion",
     description: "Discover how Devub Technologies engineered a distributed telemetry engine processing real-time vitals with sub-100ms latency.",
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80",
+    image: csNova,
   },
   {
     id: 3,
     tag: "NextJS Systems",
     title: "Stellar Logistics",
     description: "Discover how Devub Technologies overhauled a multi-region warehousing portal to achieve 99.99% fault tolerance.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: csStellar,
   },
 ];
 
-// 6. Bento Grid Process Items
+// 6. Bento Grid Creative Process (Exact 6 tiles from your design)
 export const processItems = [
   {
     id: 1,
@@ -139,17 +156,17 @@ export const processItems = [
     label: "DESIGN",
     title: "Design workshops",
     subtitle: "Aligning product vision with a clear, scalable UI system.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
+    image: procWorkshop,
   },
   {
     id: 2,
     type: "image",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
+    image: procMonitor,
   },
   {
     id: 3,
     type: "image",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
+    image: procSticky,
   },
   {
     id: 4,
@@ -162,13 +179,13 @@ export const processItems = [
     id: 5,
     type: "image",
     label: "DEVELOPMENT",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+    image: procLaptop,
   },
   {
     id: 6,
     type: "image",
     label: "INNOVATION",
-    image: "https://images.unsplash.com/photo-1573165231977-3f0e27806045?w=400&q=80",
+    image: procTeam,
   },
 ];
 
