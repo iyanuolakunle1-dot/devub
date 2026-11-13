@@ -1,4 +1,4 @@
-import devubIcon from "../assets/images/devub_icon.png";
+import DevubLogo from "./DevubLogo";
 
 const FOOTER_COLUMNS = [
   {
@@ -24,15 +24,8 @@ const Footer = () => (
 
         {/* Brand column */}
         <div className="max-w-xs">
-          <div className="flex items-center gap-2.5 mb-5">
-            <img
-              src={devubIcon}
-              alt="Devub"
-              className="w-7 h-7 object-contain"
-            />
-            <span className="font-extrabold text-xl text-white tracking-tight">
-              Devub Technologies
-            </span>
+          <div className="mb-5">
+            <DevubLogo mode="dark" />
           </div>
           <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal">
             Highly available technical architecture built from custom software solutions that guarantee robust digital growth.

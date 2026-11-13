@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
-import devubIcon from "../assets/images/devub_icon.png";
+import DevubLogo from "./DevubLogo";
 import { NAV_LINKS, BUTTON_LABELS } from "../constants/text";
 
 const Navbar = () => {
@@ -11,15 +11,8 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
         
         {/* Exact Brand Logo matching design */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <img
-            src={devubIcon}
-            alt="Devub"
-            className="w-7 h-7 object-contain"
-          />
-          <span className="font-extrabold text-[19px] text-[#0F172A] tracking-tight group-hover:text-[#2563EB] transition-colors">
-            Devub Technologies
-          </span>
+        <a href="#" className="flex items-center">
+          <DevubLogo mode="light" />
         </a>
 
         {/* Desktop Nav Links */}
@@ -33,7 +26,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="hidden md:flex items-center gap-5">
           <button
             onClick={() => console.log('Sign In clicked')}

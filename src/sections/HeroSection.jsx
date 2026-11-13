@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react";
 import Button from "../components/Button";
-import { getPartners } from "../services/api";
+import PartnerLogos from "../components/PartnerLogos";
 
 const HeroSection = () => {
-  const [partners, setPartners] = useState([]);
-
-  useEffect(() => {
-    getPartners().then(setPartners).catch(console.error);
-  }, []);
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#F0F5FF]/70 via-white to-white pt-24 pb-16 px-5 md:px-8">
       {/* Decorative background glow orb */}
@@ -61,19 +54,12 @@ const HeroSection = () => {
           </Button>
         </div>
 
-        {/* Partner Logos Strip */}
+        {/* Real Brand Logos Strip */}
         <div className="pt-10 border-t border-gray-100">
-          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-6">
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-7">
             Empowering modern engineering stacks across
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-gray-500 text-sm font-semibold tracking-tight">
-            {partners.map((p) => (
-              <span key={p.name} className="flex items-center gap-2 hover:text-[#0F172A] transition-colors">
-                <span className="w-2 h-2 rounded-full bg-blue-500/60" />
-                {p.name}
-              </span>
-            ))}
-          </div>
+          <PartnerLogos />
         </div>
       </div>
     </section>

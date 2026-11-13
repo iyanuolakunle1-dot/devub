@@ -2,7 +2,7 @@ import { useState } from "react";
 import SectionLabel from "../components/SectionLabel";
 import { portfolioProjects } from "../data/mockData";
 
-const TABS = ["Design", "Development", "Others"];
+const TABS = ["All", "Design", "Development", "Others"];
 
 const ProjectCard = ({ project }) => (
   <div className="bg-white border border-gray-100/90 rounded-[24px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
@@ -45,7 +45,13 @@ const ProjectCard = ({ project }) => (
 );
 
 const PortfolioSection = () => {
-  const [activeTab, setActiveTab] = useState("Design");
+  const [activeTab, setActiveTab] = useState("All");
+
+  // Proper interactive filtering based on clicked tab
+  const filteredProjects =
+    activeTab === "All"
+      ? portfolioProjects
+      : portfolioProjects.filter((p) => p.category === activeTab);
 
   return (
     <section id="portfolio" className="bg-white py-24 px-5 md:px-8 border-t border-gray-100">
@@ -59,26 +65,30 @@ const PortfolioSection = () => {
           </h2>
         </div>
 
-        {/* Tab switcher */}
+        {/* Tab switcher: All, Design, Development, Others */}
         <div className="flex justify-center gap-2 mb-14">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                activeTab === tab
-                  ? "bg-[#2563EB] text-white shadow-sm"
-                  : "bg-gray-100/80 text-gray-600 hover:text-[#2563EB]"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/20 scale-105"
+                    : "bg-gray-100 text-gray-600 hover:text-[#2563EB] hover:bg-gray-200/70"
+                }`}
+              >
+                {tab}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Grid: 6 cards matching design screenshot */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {portfolioProjects.map((project) => (
+        {/* Grid: dynamically filtered cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 transition-opacity duration-300">
+          {filteredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
