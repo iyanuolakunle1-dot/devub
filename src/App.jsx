@@ -1,14 +1,3 @@
-/**
- * App.jsx
- * -------
- * Root app component.
- * Wraps the page in Navbar + Footer and handles routing.
- *
- * To add new pages:
- *   1. Create the page in src/pages/
- *   2. Import it here
- *   3. Add a <Route path="/your-path" element={<YourPage />} />
- */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -21,7 +10,7 @@ const App = () => (
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* Brother: add new routes here as you build more pages */}
+          {/* add new routes here */}
         </Routes>
       </div>
       <Footer />

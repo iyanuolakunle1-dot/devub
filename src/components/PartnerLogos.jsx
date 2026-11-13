@@ -1,4 +1,3 @@
-// Clean vector SVG brand logos for the partner strip
 export const PartnerLogos = () => {
   return (
     <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
@@ -60,4 +59,3 @@ export const PartnerLogos = () => {
 };
 
 export default PartnerLogos;
-

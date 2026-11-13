@@ -9,13 +9,11 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <nav className="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
-        
-        {/* Exact Brand Logo matching design */}
         <a href="#" className="flex items-center">
           <DevubLogo mode="light" />
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-9 text-[13px] font-medium text-gray-600">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
@@ -26,10 +24,10 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Action Buttons */}
+        {/* Desktop buttons */}
         <div className="hidden md:flex items-center gap-5">
           <button
-            onClick={() => console.log('Sign In clicked')}
+            onClick={() => console.log("Sign In clicked")}
             className="text-sm font-semibold text-gray-700 hover:text-[#2563EB] transition-colors cursor-pointer"
           >
             {BUTTON_LABELS.signIn}
@@ -38,15 +36,15 @@ const Navbar = () => {
             variant="primary"
             className="text-xs px-5 py-2.5 bg-[#2563EB] hover:bg-[#1D4ED8] rounded-full font-semibold shadow-sm text-white"
             onClick={() => {
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              const el = document.getElementById("contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
             }}
           >
             {BUTTON_LABELS.getStarted}
           </Button>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile toggle */}
         <button
           className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
           onClick={() => setMenuOpen(!menuOpen)}

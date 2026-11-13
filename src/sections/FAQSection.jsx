@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SectionLabel from "../components/SectionLabel";
-import { getFaq } from "../services/api";
+import { faqItems } from "../data/mockData";
 
 const FAQSection = () => {
-  const [faqs, setFaqs] = useState([]);
-  const [openIds, setOpenIds] = useState([1, 2, 3]); // open all by default matching the screenshot
-
-  useEffect(() => {
-    getFaq().then(setFaqs).catch(console.error);
-  }, []);
+  const [openIds, setOpenIds] = useState([1, 2, 3]);
 
   const toggle = (id) => {
     setOpenIds((prev) =>
-
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
   };
 
   return (
     <section id="faq" className="bg-[#F8FAFC] py-24 px-5 md:px-8 border-t border-gray-100">
-      <div className="max-w-4xl mx-auto">my brother said this "I always told you stop making it look like you use AI,Why didn't you change the logo,Atleast they are images so change it and also some logos are not there"
-        {/* Header */}
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <SectionLabel text="FREQUENTLY ASKED QUESTIONS" />
           <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#0F172A] tracking-tight mt-3">
@@ -28,9 +21,8 @@ const FAQSection = () => {
           </h2>
         </div>
 
-        {/* Accordion Cards */}
         <div className="space-y-4">
-          {faqs.map((item) => {
+          {faqItems.map((item) => {
             const isOpen = openIds.includes(item.id);
             return (
               <div
@@ -44,7 +36,7 @@ const FAQSection = () => {
                       {item.question}
                     </h3>
                     {isOpen && (
-                      <p className="text-sm text-gray-500 leading-relaxed font-normal">
+                      <p className="text-sm text-gray-500 leading-relaxed">
                         {item.answer}
                       </p>
                     )}
